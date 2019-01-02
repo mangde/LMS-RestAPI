@@ -1,0 +1,47 @@
+
+<!DOCTYPE html >
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Spring MVC</title><link href="/css/custom.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+ <th:block xmlns:th="http://www.thymeleaf.org">
+	 <div id="menu1" th:replace="/index :: header"> </div>
+	
+<h2>Submitted isssued Book Information...</h2>
+
+	<table>
+		 <tr>
+			<td>BookId</td>
+			<td th:text="${issueBook.bookId}"></td>
+		</tr> 
+		<tr>
+			<td>userName</td>
+			<td th:text="${issueBook.userName}"></td>
+		</tr>
+		<tr>
+			<td>OutDate</td>
+			<td th:text="${issueBook.outDate}"></td>
+		</tr>
+		<tr>
+			<td>DueDate</td>
+			<td th:text="${issueBook.dueDate}"></td>
+		</tr>
+	
+	</table>
+	
+	<table >
+                <tr>
+                    <td style="font-style: italic; color: red;" data-th-text="${message}"></td>
+                </tr>
+            </table>
+     </th:block>
+
+</body>
+
+</html>

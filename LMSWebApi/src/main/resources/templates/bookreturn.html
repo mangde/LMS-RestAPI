@@ -1,0 +1,51 @@
+
+    
+<!DOCTYPE html>
+<html>
+<head>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>return book here</title>
+<link href="/css/custom.css" rel="stylesheet" type="text/css">
+
+</head>
+<body><th:block xmlns:th="http://www.thymeleaf.org">
+ <div id="menu1" th:replace="/index :: header"> </div>
+
+<form th:method="POST" th:modelAttribute="bookIssue" th:action="@{/issuebook/return}">
+<h2>return Book info..</h2>
+		<table id="Breturntable">
+			<tbody>
+			<tr>
+					<td><label id="bookId">BookId:</label></td>
+					<td><input type="number" name="bookId" th:value="${bookIssue.bookId}"></input></td>
+				</tr>
+				<tr>
+					<td><label id="userName">UserName:</label></td>
+					<td><input name="userName" th:value="${bookIssue.userName}"></input></td>
+				</tr>
+
+				<tr>
+					<td>OutDate:</td>
+					<td th:text="${bookIssue.outDate}"></td>
+				</tr>
+<tr>
+					<td>DueDate:</td>
+					<td th:text="${bookIssue.dueDate}"></td>
+				</tr>
+				<tr>
+					<td>ReturnDate</td>
+					<td><input name="returnDate"  type="date" /></td>
+				</tr>
+				
+
+				<tr>
+					<td colspan="2" align="center"><input value="return" type="submit"></td>
+					<td></td>
+				</tr>
+
+			</tbody>
+		</table>
+	</form>
+
+</body>
+</html>

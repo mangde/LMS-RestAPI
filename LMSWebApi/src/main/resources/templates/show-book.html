@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Insert title here</title>
+<link href="/css/custom.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+	<th:block xmlns:th="http://www.thymeleaf.org">
+		<div id="menu1" th:replace="/index :: header"></div>
+
+		<Div>
+			<h2>Search Book Result</h2>
+
+			<table style="width: 300px" border="1">
+				<thead>
+					<tr>
+						<th width="10%">BookId</th>
+						<th width="15%">title</th>
+						<th width="15%">Publication</th>
+						<th width="15%">Author</th>
+						<th width="15%">No-of-Copies</th>
+						<th width="20%">Status</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="book,iter:${books}">
+
+						<td th:text="${book.bookId}"></td>
+						<td th:text="${book.title}"></td>
+						<td th:text="${book.publication}"></td>
+						<td th:text="${book.author}"></td>
+						<td th:text="${book.totalCopies}"></td>
+						<td><div th:if="${book.available}">
+								<div>Available</div>
+							</div>
+							<div th:unless="${book.available}">
+
+								<div>Not Available</div>
+							</div></td>
+						<td>
+							<form th:action="@{/book/edit}" th:method="get">
+								<input type="hidden" name="bookId" th:value="${book.bookId}" />
+								<button type="submit" th:value="${book.bookId}">update</button>
+							</form>
+						<td>
+							<form th:action="@{/book/delete}" th:method="get">
+								<input type="hidden" name="bookId" th:value="${book.bookId}" />
+								<button type="submit" th:value="${book.bookId}">delete</button>
+							</form> 
+						</td>
+
+						<td>
+							<div th:if="${book.available}">
+								<div>
+									<form th:action="@{/issuebook}" th:method="get">
+										<input type="hidden" name="bookId" th:value="${book.bookId}" />
+										<button type="submit" th:value="${book.bookId}">issueBook</button>
+									</form>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+
+		</Div>
+		<table>
+			<tr>
+				<td style="font-style: italic; color: red;"
+					data-th-text="${message}"></td>
+			</tr>
+		</table>
+	</th:block>
+</body>
+</html>

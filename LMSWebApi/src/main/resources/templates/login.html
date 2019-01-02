@@ -1,0 +1,49 @@
+<!DOCTYPE html >
+        <html>
+        <head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Login</title><link href="/css/custom.css" rel="stylesheet" type="text/css">
+            
+        </head>
+        <body>
+        <div>
+</div>
+ <th:block xmlns:th="http://www.thymeleaf.org">
+ <div id="menu1" th:replace="/index :: header"> </div>
+
+            <form id="loginForm"  th:action="@{/loginProcess}" th:method="post" th:modelAttribute="login">
+                <table>
+                    <tr>
+                        <td>
+                            <label id="userName">UserName: </label>
+                        </td>
+                        <td>
+                            <input type="text" id="userName" name="userName" required="required" autofocus="autofocus">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label id="password">Password:</label>
+                        </td>
+                        <td>
+                            <input type="password" id="password" name="password" required="required">
+                        </td>
+                    </tr>
+                    <tr>
+                     
+                        <td colspan="2" align="center">
+                            <input type="submit" id="login" name="login" value="Login">
+                        </td>
+                    </tr>
+                   
+                   
+                </table>
+            </form>
+            <table >
+                <tr>
+                    <td style="font-style: italic; color: red;" data-th-text="${message}"></td>
+                </tr>
+            </table>
+     </th:block>
+        </body>
+        </html>

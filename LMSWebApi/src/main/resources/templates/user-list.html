@@ -1,0 +1,58 @@
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>all user list here</title>
+
+<link href="/css/custom.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+	<th:block xmlns:th="http://www.thymeleaf.org">
+		<div id="menu1" th:replace="/index :: header"></div>
+
+		<h1 align="center">List of users</h1>
+		<div id="usrlistTable">
+
+			<table border="1" style="width: 300px">
+				<thead>
+					<tr>
+						<th width="10%">UserId</th>
+						<th width="15%"><a th:href="@{/user/sort/name}">UserName</a></th>
+						<th width="15%">Phone</th>
+						<th width="15%">Department</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="user, iter:${listUsers}">
+
+						<td th:text="${user.userId}"></td>
+						<td th:text="${user.userName}"></td>
+						<td th:text="${user.phone}"></td>
+						<td th:text="${user.department}"></td>
+						<td>
+							<form th:action="@{/user/edit}" th:method="get">
+								<input type="hidden" name="userId" th:value="${user.userId}" />
+								<button type="submit" th:value="${user.userId}">update</button>
+							</form>
+						<td>
+							<form th:action="@{/user/delete}" th:method="get">
+								<input type="hidden" name="userId" th:value="${user.userId}" />
+								<button type="submit" th:value="${user.userId}">delete</button>
+							</form>
+
+						</td>
+
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+</body>
+</html>

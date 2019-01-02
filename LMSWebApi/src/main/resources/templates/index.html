@@ -1,0 +1,57 @@
+ 
+<!DOCTYPE html>
+
+<html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Insert title here</title>
+<link href="/css/custom.css"
+        rel="stylesheet">
+<style type="text/css">
+
+</style>
+</head>
+<body> <th:block xmlns:th="http://www.thymeleaf.org">
+
+
+
+
+		<div id="menu1" th:fragment="header">
+		<ul id="ulmenu" >
+					<li><a th:href="@{/index}">Home</a></li>
+		
+			<li><a th:href="@{/book/addbook}">AddBook</a></li>
+			
+			
+			<li><a th:href="@{/book/list}">Book
+					list</a></li>
+			<li><a th:href="@{/book/search}">SearchBook</a></li>
+			
+			<li><a th:href="@{/issuebook/list}">IssuedBook
+					list</a></li>
+
+
+			<li><a th:href="@{/adduser}">AddUser</a></li>
+			<li><a th:href="@{/user/list}">All	user list</a></li>
+			
+			<li><a th:href="@{/user/search}">SearchUser</a></li>
+
+			<li><a th:href="@{/login}">Login</a>
+
+			</li>
+		</ul>
+	</div>
+   <div>
+            
+            </div>
+            <div >
+            <table >
+                <tr>
+                    <td style="font-style: italic; color: red;" data-th-text="${message}"></td>
+                </tr>
+            </table>
+            </div>
+         
+      </th:block>
+</body>
+</html>

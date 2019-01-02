@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="Test">
+    <classes>
+      <class name="com.lms.test.controller.LinkControllerTest"/>
+      <class name="com.lms.test.service.BookIssueServiceTest"/>
+      <class name="com.lms.test.controller.UserControllerTest"/>
+      <class name="com.lms.LmsWebApiApplicationTests"/>
+      <class name="com.lms.test.controller.HomeControllerTest"/>
+      <class name="com.lms.test.controller.BookIssueControllerTest"/>
+      <class name="com.lms.test.service.UserServiceTest"/>
+      <class name="com.lms.test.dao.BookDaoTest"/>
+      <class name="com.lms.test.dao.UserDaoTest"/>
+      <class name="com.lms.test.dao.BookIssueDAOTest"/>
+      <class name="com.lms.test.controller.BookControllerTest"/>
+      <class name="com.lms.test.service.BookServiceTest"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->

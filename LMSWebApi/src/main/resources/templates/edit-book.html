@@ -1,0 +1,74 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>edit book</title>
+<link href="/css/custom.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+	<th:block xmlns:th="http://www.thymeleaf.org">
+
+< <div id="menu1" th:replace="/index :: header"></div>
+
+		<h1>Edit book page</h1>
+
+		<p>Here you can edit the existing book.</p>
+
+		<form id="editbookform" th:method="POST" th:action="@{/book/edit/process}"
+			th:modelAttribute="book">
+
+			<table id="Bedittable">
+				<tbody>
+					<tr>
+						<td>BookId:</td>
+						<td><input type="number" name="bookId"
+							th:value="${book.bookId}"></input></td>
+					</tr>
+					<tr>
+						<td>Title:</td>
+						<td><input type="text" name="title" th:value="${book.title}"
+							title="title should only contain alphabets"></td>
+					</tr>
+
+					<tr>
+						<td>Publication:</td>
+						<td><input type="text" name="publication"
+							th:value="${book.publication}" 
+							title="Publication should only contain alphabets"></td>
+					</tr>
+					<tr>
+						<td>Author:</td>
+						<td><input type="text" name="author"
+							th:value="${book.author}" 
+							title="Author should only contain alphabets"></td>
+					</tr>
+					<tr>
+						<td>No-of-Copies:</td>
+						<td><input type="number" name="totalCopies"
+							th:value="${book.totalCopies}" required="required"
+							title="ToalBooks should only contain numbers"></td>
+					</tr>
+					<tr>
+						<td colspan="2" align="center"><input th:name="submit"
+							th:value="submit" type="submit"></td>
+
+					</tr>
+
+				</tbody>
+			</table>
+		</form>
+
+		<table>
+			<tr>
+				<td style="font-style: italic; color: red;"
+					data-th-text="${message}"></td>
+			</tr>
+		</table>
+	</th:block>
+
+</body>
+</html>

@@ -1,0 +1,113 @@
+
+
+#menu1{
+ 
+display: flex;
+    color: #333;
+/*     background-color: #efefef;
+ */    font-family: raleway;
+    font-size: 18px;
+    line-height: 1.42857143;
+    background-color: #63b175;
+}
+#ulmenu{
+list-style-type: none;
+
+}
+:hover {
+	color: green;
+}
+li:hover {
+		background-color: white;
+	
+}
+ul li {
+ 
+  padding: 5px;
+  margin-left: 35px;
+  float: left;
+}
+
+
+#udetail {
+	position: relative;
+}
+
+
+#bkissue {
+	position: static;
+	padding: 5%;
+	float: inherit;
+}
+#addusertable{
+	margin-top:30px;
+	top:30%;
+    border: 3px solid #73AD21;
+    width:30%;
+    
+    
+}
+#addBkTable{
+	background: silver;
+}
+
+#UDTable{
+    border: 3px solid #73AD21;
+	width: 300px;
+	align:center;
+}
+#UbkissueTable{
+    border: 3px solid #73AD21;
+	width: 500px;
+	align:center;
+	
+}
+#editusertable{
+    border: 3px solid #73AD21;
+	align:center;
+}
+#Breturntable{
+	    border: 3px solid #73AD21;
+	align:center
+}
+#Bedittable{
+	    border: 3px solid #73AD21;
+	align:center
+}
+#issuedBTable{
+	 border: 1px solid #73AD21;
+	align:center;
+	width:500px;
+}
+th{
+background-color: #8BC34A;
+}
+
+a:hover {
+	color: fuchsia;
+}
+td {
+	align-content: space-around;
+	align-items: center;
+	color:black;
+}
+
+#udetail {
+	position: relative;
+}
+
+button {
+     background:none!important;
+     border:none; 
+     padding:0!important;
+     font: inherit;
+     /*border is optional*/
+     border-bottom:1px solid #444; 
+     cursor: pointer;
+     color: #8BC34A;
+     
+}
+button:hover {
+	
+background-color: #fff;
+}

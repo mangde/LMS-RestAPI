@@ -1,0 +1,55 @@
+
+<!DOCTYPE html >
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>issue book</title>
+<link href="/css/custom.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<th:block xmlns:th="http://www.thymeleaf.org">
+		<div id="menu1" th:replace="/index :: header"></div>
+
+
+		<form th:method="POST" th:action="@{/issuebook/process}"
+			th:modelAttribute="bookIssue">
+
+			<table>
+				<tbody>
+
+					<tr>
+						<td><label id="bookId">BookId</label></td>
+						<td><input type="number" name="bookId"
+							th:value="${book.bookId}" /></td>
+					</tr>
+					<tr>
+						<td><label id="userName">userName</label></td>
+						<td><input type="text" name="userName" required="required"
+							title="UserName should only contain alphabets"></td>
+					</tr>
+					<tr>
+						<td>outDate</td>
+						<td><input type="date" name="outDate" /></td>
+					</tr>
+					<tr>
+						<td>DueDate</td>
+						<td><input type="date" name="dueDate" /></td>
+					</tr>
+
+
+					<tr>
+						<td colspan="2"><input type="submit" th:value="Submit" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+		<table>
+			<tr>
+				<td style="font-style: italic; color: red;"
+					data-th-text="${message}"></td>
+			</tr>
+		</table>
+	</th:block>
+</html>

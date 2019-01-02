@@ -1,0 +1,110 @@
+<!DOCTYPE html >
+
+<html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>show search user</title>
+<link href="/css/custom.css" rel="stylesheet" type="text/css">
+
+
+</head>
+<body>
+	<th:block xmlns:th="http://www.thymeleaf.org">
+ <div id="menu1" th:replace="/index :: header"> </div>
+
+		<Div id="showuserdiv">
+			<h2>Search user data</h2>
+
+			<table id="UDTable" border="1">
+				<thead>
+					<tr>
+						<th width="10%">UserId</th>
+						<th width="15%">UserName</th>
+						<th width="15%">Phone</th>
+						<th width="15%">Department</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="user,iter:${usersList}">
+
+						<td th:text="${user.userId}"></td>
+						<td th:text="${user.userName}"></td>
+						<td th:text="${user.phone}"></td>
+						<td th:text="${user.department}"></td>
+						<td>
+							<form th:action="@{/user/edit}" th:method="get">
+								<input type="hidden" name="userId" th:value="${user.userId}" />
+								<button type="submit" th:value="${user.userId}">update</button>
+							</form>
+						<td>
+							<form th:action="@{/user/delete}" th:method="get">
+								<input type="hidden" name="userId" th:value="${user.userId}" />
+								<button type="submit" th:value="${user.userId}">delete</button>
+							</form>
+
+						</td>
+					</tr>
+
+				</tbody>
+			</table>
+
+		</div>
+
+
+		<div id="UserBIdiv">
+			<h2>Borrow Book Details</h2>
+			<table id="UbkissueTable" border="1">
+				<thead>
+					<tr>
+						<th width="10%">BookId</th>
+						<th width="50%">OutDate</th>
+						<th width="80%">DueDate</th>
+						<th width="70%">ReturnDate</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="book,iter:${issuedBooks}">
+
+
+						<td th:text="${book.bookId}"></td>
+						<td th:text="${book.outDate}"></td>
+						<td th:text="${book.dueDate}"></td>
+						<td>
+							<div th:if=${book.returnDate}>
+								<div th:text="${book.returnDate}"></div>
+							</div>
+							<div th:unless="${book.returnDate}">
+								<div th:text="Borrow"></div>
+							</div>
+						</td>
+						<td>
+						<div th:unless="${book.returnDate}">
+						<form th:action="@{/issuebook/return}" th:method="get" th:modelAttribute="bookIssue">
+										<input type="hidden" name="bookId" th:value="${book.bookId}" />
+										<input type="hidden" name="userId" th:value="${user.userId}">
+										<button type="submit">Return</button>
+									</form>
+									</div>
+						</td>
+
+
+					</tr>
+				</tbody>
+			</table>
+
+		</Div>
+
+		<table>
+			<tr>
+				<td style="font-style: italic; color: red;"
+					data-th-text="${message}"></td>
+			</tr>
+		</table>
+	</th:block>
+
+
+
+
+</body>
+</html>

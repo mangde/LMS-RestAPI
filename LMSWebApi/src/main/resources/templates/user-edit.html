@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>edit User</title>
+<link href="/css/custom.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+ <th:block xmlns:th="http://www.thymeleaf.org">
+  
+  <div id="menu1" th:replace="/index :: header"> </div>
+ 
+	<h1>Edit user page</h1>
+	
+	<form th:method="POST" th:modelAttribute="user"	th:action="@{/user/edit}">
+
+		<table id="editusertable">
+			<tbody>
+			<tr>
+					<td>UserId:</td>
+					<td><input type="number" name="userId" value="${user.userId}"/></td>
+				</tr>
+				<tr>
+					<td>Name:</td>
+					<td><input type="text" name="userName" th:value="${user.userName}"/></td>
+				</tr>
+
+				<tr>
+					<td>phone:</td>
+					<td><input type="number" name="phone"  th:value="${user.phone}"/></td>
+				</tr>
+<tr>
+					<td>Department:</td>
+					<td><input type="text" name="department"  th:value="${user.department}"/></td>
+				</tr>
+
+				<tr>
+					<td colspan="2" align="center"><input value="Edit" type="submit"></td>
+					
+				</tr>
+
+			</tbody>
+		</table>
+	</form>
+	<table >
+                <tr>
+                    <td style="font-style: italic; color: red;" data-th-text="${message}"></td>
+                </tr>
+            </table>
+     </th:block>
+
+</body>
+</html>

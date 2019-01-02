@@ -1,0 +1,91 @@
+
+
+<!DOCTYPE html>
+
+
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>view all books</title>
+<link href="/css/custom.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<th:block xmlns:th="http://www.thymeleaf.org">
+		<div id="menu1" th:replace="/index :: header"></div>
+
+
+		<h1>List of books</h1>
+		<p>Here you can see the list of the books, edit them, remove or
+			update.</p>
+		<p>Use Sorting Book by Title Or Status</p>
+
+
+		<div id="tableDiv">
+			<table style="width: 300px" border="1">
+				<thead>
+					<tr>
+						<th width="10%">BookId</th>
+						<th width="20%"><a th:href="@{/book/list}">Title</a></th>
+						<th width="20%">Publication</th>
+						<th width="20%">Author</th>
+						<th width="20%">No-of-Copies</th>
+						<th width="20%"><a th:href="@{/book/sort/status}">Status</a></th>
+
+					</tr>
+				</thead>
+				<tbody>
+
+					<tr th:each="book,iter:${books}">
+
+						<td th:text="${book.bookId}"></td>
+						<td th:text="${book.title}"></td>
+						<td th:text="${book.publication}"></td>
+						<td th:text="${book.author}"></td>
+						<td th:text="${book.totalCopies}"></td>
+
+						<td>
+							<div th:if="${book.available}">
+								<div>Available</div>
+							</div>
+							<div th:unless="${book.available}">
+
+								<div>Not Available</div>
+							</div>
+						</td>
+						<td>
+							<form th:action="@{/book/edit}" th:method="get">
+								<input type="hidden" name="bookId" th:value="${book.bookId}" />
+								<button type="submit" th:value="${book.bookId}">update</button>
+							</form> <!-- 	<a th:href="@{/book/edit/${book.bookId}}">Update</a></td>
+					 -->
+						<td>
+							<form th:action="@{/book/delete}" th:method="get">
+								<input type="hidden" name="bookId" th:value="${book.bookId}" />
+								<button type="submit" th:value="${book.bookId}">delete</button>
+							</form> <!-- <a th:href="@{/book/delete/${book.bookId}}">Delete</a> -->
+						</td>
+
+						<td>
+							<div th:if="${book.available}">
+								<div>
+									<form th:action="@{/issuebook}" th:method="get">
+										<input type="hidden" name="bookId" th:value="${book.bookId}" />
+										<button type="submit" th:value="${book.bookId}">issueBook</button>
+									</form>
+								</div>
+							</div> <!-- <a th:href="@{/issuebook/${book.bookId}}">IssueBook</a> -->
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<table>
+			<tr>
+				<td style="font-style: italic; color: red;"
+					data-th-text="${message}"></td>
+			</tr>
+		</table>
+	</th:block>
+</body>
+</html>

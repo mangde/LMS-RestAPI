@@ -1,0 +1,66 @@
+
+<!DOCTYPE html >
+<html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>show issued Book page</title>
+<link href="/css/custom.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+<th:block xmlns:th="http://www.thymeleaf.org">
+ <div id="menu1" th:replace="/index :: header"> </div>
+
+	<div id="tableDiv">
+		<table  id="issuedBTable" border="1"  style="width: 300px">
+			<thead>
+				<tr>
+					<th width="10%">BookId</th>
+					<th width="30%"><a th:href="@{/bookissue/sort/name}">UserName</a></th>
+					<th width="80%">OutDate</th>
+					<th width="80%">DueDate</th>
+					<th width="70%">ReturnDate</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="book,iter:${issuedBooks}">
+					
+						<td th:text="${book.bookId}"></td>
+						<td th:text="${book.userName}"></td>
+						<td th:text="${book.outDate}"></td>
+						<td th:text="${book.dueDate}"></td>
+					<td>
+							<div th:if=${book.returnDate}>
+								<div th:text="${book.returnDate}"></div>
+							</div>
+							<div th:unless="${book.returnDate}">
+								<div th:text="Borrow"></div>
+							</div>
+						</td>
+						<td>
+						<div th:unless="${book.returnDate}">
+						<form th:action="@{/issuebook/return}" th:method="get" th:modelAttribute="bookIssue">
+										<input type="hidden" name="bookId" th:value="${book.bookId}" />
+										<input type="hidden" name="userName" th:value="${book.userName}"/>
+										<button type="submit" >Return</button>
+									</form>
+									</div>
+						</td>
+
+
+						
+					</tr>
+			</tbody>
+		</table>
+	</div>
+
+<table >
+                <tr>
+                    <td style="font-style: italic; color: red;" data-th-text="${message}"></td>
+                </tr>
+            </table>
+     </th:block>
+
+</body>
+</html>

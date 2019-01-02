@@ -1,0 +1,65 @@
+
+<!DOCTYPE html>
+
+<html>
+<head><meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>add user</title>
+<link href="/css/custom.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+	 <th:block xmlns:th="http://www.thymeleaf.org">
+	 <div id="menu1" th:replace="/index :: header"> </div>
+	
+
+	<div id="adduserDiv">
+	<h2 align="center">Add user</h2>
+		<form th:method="POST" 	th:action="@{/adduser/process}" th:modelAttribute="user">
+			<table id="addusertable"  >
+				<tbody>
+					<tr>
+						<td>UserId</td>
+						<td><input type="number" name="userId" required="required"></td>
+					</tr>
+
+					<tr>
+						<td>UserName</td>
+						<td><input type="text" name="UserName" required="required"></td>
+					</tr>
+					<tr>
+						<td>Phone</td>
+						<td><input type="number" name="phone" required="required"
+						
+						title="phone should only contain number"></td>
+					</tr>
+					<tr>
+						<td>Department</td>
+						<td><select  th:name="department" required="required">
+								<option value="none" label="Select" />
+								<option value="QA" label=" QA" />
+								<option value="HR" label="HR" />
+								<option value="Helth" label="Health" />
+								<option value="R&D" label="R&D" />
+							</select></td>
+					</tr>
+					<tr></tr>
+					<tr></tr>
+					<tr>
+						<td></td>
+						<td colspan="2" style="align-content: center;"><input
+							type="submit" value="Submit" /></td>
+					</tr>
+				</tbody>
+			</table>
+		</form>
+	</div>
+ <table >
+                <tr>
+                    <td style="font-style: italic; color: red;" data-th-text="${message}"></td>
+                </tr>
+            </table>         
+                        
+	</th:block>
+</body>
+</html>
