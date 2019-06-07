@@ -18,6 +18,7 @@ import com.lms.model.Book;
 import com.lms.service.BookService;
 
 @RestController
+@RequestMapping("/book")
 public class BookController {
 	private int count=0;
 
@@ -26,7 +27,7 @@ public class BookController {
 
 	/* Add book request mapping to view*/
 
-	@GetMapping(value="/book/addbook",produces="text/html" )
+	@GetMapping(value="/addbook",produces="text/html" )
 	@ResponseBody
 	public ModelAndView addBookPage() {	
 		ModelAndView modelAndView = new ModelAndView("addBook");	
@@ -35,7 +36,7 @@ public class BookController {
 
 	}
 	/* Add book response to new entry  add in database*/
-	@PostMapping(value="/book/addbook/process",produces="text/html")
+	@PostMapping(value="/addbook/process",produces="text/html")
 	@ResponseBody
 	public ModelAndView addingBook(@ModelAttribute Book book) {
 		ModelAndView modelAndView = null;
@@ -59,7 +60,7 @@ public class BookController {
 	}
 
 	/*Mapping method listOfBooks method show all the available Book in library also apply sorting on title of the book*/
-	@GetMapping(value="/book/list",produces="text/html")
+	@GetMapping(value="/list",produces="text/html")
 	@ResponseBody
 	public ModelAndView listOfBooks() {
 		ModelAndView modelAndView = new ModelAndView("list-of-books");
@@ -81,12 +82,11 @@ public class BookController {
 
 		}
 		return modelAndView;
-
 	}
 
 
 	/*Edit Book request*/
-	@GetMapping(value="/book/edit", produces="text/html")	
+	@GetMapping(value="/edit", produces="text/html")	
 	@ResponseBody
 
 	public ModelAndView editBookPage(@ModelAttribute Book Book ,@RequestParam (value="bookId" ,required=false) Integer bookId) {
@@ -104,7 +104,7 @@ public class BookController {
 	}
 
 	/*Edit book Response to successfully updated*/
-	@PostMapping(value="/book/edit/process", produces="text/html")
+	@PostMapping(value="/edit/process", produces="text/html")
 	@ResponseBody
 	public ModelAndView edditingBook(@ModelAttribute Book book) {
 		ModelAndView modelAndView = new ModelAndView("list-of-books");
@@ -117,20 +117,15 @@ public class BookController {
 				modelAndView.addObject("message", "Successfully  updated Book");
 			}else {
 				modelAndView.addObject("message", "Failed to update Book");
-
 			}
-
-
-
 		}catch (Exception e) {
 			e.printStackTrace();	
 		}
 		return modelAndView;
-
 	}
 
 	/*Search Book Request*/
-	@GetMapping(value="/book/search", produces="text/html")
+	@GetMapping(value="/search", produces="text/html")
 	@ResponseBody
 	public ModelAndView searchBookPage(@ModelAttribute Book book) {	
 		ModelAndView modelAndView = new ModelAndView("searchBook");	
@@ -139,24 +134,22 @@ public class BookController {
 	}
 
 	/**Response to the search Book*/
-	@PostMapping(value = "/book/searchBook", produces="text/html")
+	@PostMapping(value = "/searchBook", produces="text/html")
 	public ModelAndView searchBookprocess (@RequestParam(value="title" ,required=false) String title) {
 		ModelAndView modelAndView = new ModelAndView("show-book");	 
 		try{
 			List<Book> books = bookService.searchBook(title);
-
 			modelAndView.addObject("book", new Book());	
 			modelAndView.addObject("books",books);	
 
 		}catch (Exception e) {
 			modelAndView.addObject("message", "Not Available");
 		}
-
 		return modelAndView;	
 	}
 
 	/* delete Book response to the request*/
-	@GetMapping(value="/book/delete", produces="text/html")
+	@DeleteMapping(value="/delete", produces="text/html")
 	@ResponseBody
 	public ModelAndView deleteBook(@RequestParam(value="bookId",required=false) Integer bookId) {
 		ModelAndView modelAndView = new ModelAndView("index");
@@ -167,24 +160,18 @@ public class BookController {
 			}else {
 				String message = "a Book Cannot delete or update ... ";
 				modelAndView.addObject("message", message);
-
 			}
-
-
 		}catch(Exception e) {
-
 			String message = "Cannot delete or update a parent row: a foreign key constraint fails   ";
 			modelAndView.addObject("message", message);
-
-			e.printStackTrace();
+				e.printStackTrace();
 
 		}
 		return modelAndView;
-
 	}
 
 	/*Sorting a book as per status is available or not*/
-	@GetMapping(value="/book/sort/status",produces="text/html")
+	@GetMapping(value="/sort/status",produces="text/html")
 	@ResponseBody
 	public ModelAndView sortByStatus() {
 		ModelAndView modelAndView = new ModelAndView("list-of-books");
@@ -197,18 +184,11 @@ public class BookController {
 				modelAndView.addObject("books", books);
 			}else {
 				books.sort(Comparator.comparing(Book::getAvailable).reversed());
-
 				modelAndView.addObject("books", books);
-
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 		return modelAndView;
-
 	}
-
-
-
 }
